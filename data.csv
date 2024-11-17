@@ -1,0 +1,4 @@
+name,subnet ip,transport zone,vlan id,attached gateways
+Segment1,10.0.1.0/24,zone1,100,gateway1
+Segment2,10.0.2.0/24,zone2,101,gateway2
+Segment3,10.0.3.0/24,zone3,102,gateway3

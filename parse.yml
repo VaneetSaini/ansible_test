@@ -1,0 +1,21 @@
+---
+- name: Create NSX Segments from CSV data
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Read CSV file and store data
+      community.general.read_csv:
+        path: "data.csv"
+        key: name  
+      register: segments
+
+    - name: Display each segment data from the CSV
+      ansible.builtin.debug:
+        msg: |
+          Segment Name: {{ item.value['name'] }}
+          Subnet IP: {{ item.value['subnet ip'] }}
+          Transport Zone: {{ item.value['transport zone'] }}
+          VLAN ID: {{ item.value['vlan id'] }}
+          Attached Gateways: {{ item.value['attached gateways'] }}
+      loop: "{{ segments.dict | dict2items }}"
